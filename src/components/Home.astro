@@ -6,6 +6,7 @@ interface Props { lang: Locale }
 const { lang } = Astro.props;
 const c = site[lang];
 const bookHref = settings.email !== settings.email.toUpperCase() ? `mailto:${settings.email}` : `/${lang}/#contacto`;
+const companiesHref = { pt: '/pt/empresas', en: '/en/companies', es: '/es/empresas' }[lang];
 ---
 <!-- HERO -->
 <section class="hero">
@@ -134,7 +135,7 @@ const bookHref = settings.email !== settings.email.toUpperCase() ? `mailto:${set
       ))}
     </div>
     <div class="text-center" style="margin-top:32px;">
-      <a class="btn btn-secondary" href={`/${lang}/#contacto`}>{c.corporate.cta}</a>
+      <a class="btn btn-secondary" href={companiesHref}>{c.corporate.cta}</a>
     </div>
   </div>
 </section>

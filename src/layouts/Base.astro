@@ -5,8 +5,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { type Locale, htmlLang, site } from '../content/site';
 
-interface Props { lang: Locale; title?: string; description?: string }
-const { lang } = Astro.props;
+interface Props { lang: Locale; title?: string; description?: string; altLocales?: Partial<Record<Locale, string>> }
+const { lang, altLocales } = Astro.props;
 const c = site[lang];
 const title = Astro.props.title ?? c.meta.title;
 const description = Astro.props.description ?? c.meta.description;
@@ -19,7 +19,7 @@ const skip = lang === 'en' ? 'Skip to content' : lang === 'es' ? 'Saltar al cont
   </head>
   <body>
     <a class="skip-link" href="#main">{skip}</a>
-    <Header lang={lang} />
+    <Header lang={lang} altLocales={altLocales} />
     <main id="main">
       <slot />
     </main>

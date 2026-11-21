@@ -15,6 +15,22 @@ export type NavItem = { label: string; href: string };
 export type Card = { icon: string; title: string; text: string };
 export type Step = { title: string; text: string };
 
+// Landing page B2B dedicada (brief §híbrido; estrutura: benchmark §7).
+// Página de campanha focada: uma promessa, prova, e um só objetivo (pedir proposta).
+export interface CompaniesContent {
+  meta: { title: string; description: string };
+  hero: { eyebrow: string; h1: string; sub: string; cta: string; back: string };
+  offers: { eyebrow: string; title: string; intro: string; items: Card[] };
+  why: { eyebrow: string; title: string; items: Card[] };
+  how: { eyebrow: string; title: string; steps: Step[] };
+  confidentiality: { title: string; text: string };
+  form: {
+    eyebrow: string; title: string; text: string;
+    labels: { name: string; company: string; email: string; size: string; message: string };
+    submit: string; privacy: string; pending: string;
+  };
+}
+
 export interface LocaleContent {
   meta: { title: string; description: string };
   nav: NavItem[];
@@ -26,6 +42,7 @@ export interface LocaleContent {
   modalities: { eyebrow: string; title: string; items: Card[] };
   team: { eyebrow: string; title: string; text: string };
   corporate: { eyebrow: string; title: string; text: string; items: Card[]; cta: string };
+  companies: CompaniesContent;
   resources: { eyebrow: string; title: string; text: string };
   contact: { eyebrow: string; title: string; text: string; cta: string; emergency: string };
   footer: { tagline: string; colA: string; colB: string; linksA: NavItem[]; linksB: NavItem[]; legal: string };
@@ -108,6 +125,69 @@ export const site: Record<Locale, LocaleContent> = {
         { icon: 'care', title: 'Corporate Care', text: 'Acordo trimestral ou anual, adaptado à organização.' },
       ],
       cta: 'Pedir proposta',
+    },
+    companies: {
+      meta: {
+        title: 'Psicologia para empresas em Lisboa e online | Nest Minds',
+        description:
+          'Bem-estar psicológico para equipas: protocolos para colaboradores, workshops, bolsas de consultas e programas à medida. Em português, inglês e espanhol. Peça uma proposta.',
+      },
+      hero: {
+        eyebrow: 'Empresas e organizações',
+        h1: 'Cuidar das pessoas também é cuidar das empresas.',
+        sub: 'Bem-estar psicológico para equipas, lideranças e organizações — em Lisboa e online, com atendimento em português, inglês e espanhol.',
+        cta: 'Pedir proposta',
+        back: '← Voltar ao site Nest Minds',
+      },
+      offers: {
+        eyebrow: 'O que oferecemos',
+        title: 'Quatro formas de começar',
+        intro: 'Pode começar simples, com um protocolo sem custo, e evoluir para formação e acompanhamento contínuo.',
+        items: [
+          { icon: 'care', title: 'Protocolo empresarial', text: 'Condições especiais de consulta para colaboradores e famílias, sem custo de adesão para a empresa.' },
+          { icon: 'talk', title: 'Workshops e formação', text: 'Sessões práticas sobre stress, burnout, comunicação, inteligência emocional e parentalidade — online ou presenciais.' },
+          { icon: 'heart', title: 'Bolsas de consultas', text: 'A empresa disponibiliza um conjunto de sessões aos colaboradores, com marcação simples e sigilo clínico.' },
+          { icon: 'academy', title: 'Programas à medida', text: 'Acompanhamento contínuo e intervenções desenhadas para os objetivos de cada organização.' },
+        ],
+      },
+      why: {
+        eyebrow: 'Porquê a Nest Minds',
+        title: 'O que nos distingue',
+        items: [
+          { icon: 'globe', title: 'Atendimento multilingue', text: 'Equipas internacionais acompanhadas em português, inglês e espanhol.' },
+          { icon: 'brain', title: 'Parentalidade e neurodesenvolvimento', text: 'Uma especialização que vai além do catálogo corporativo genérico.' },
+          { icon: 'adult', title: 'Equipa clínica verificada', text: 'Psicólogos com formação e especialização reais, não uma bolsa anónima.' },
+        ],
+      },
+      how: {
+        eyebrow: 'Como avançamos',
+        title: 'Da conversa à proposta',
+        intro: 'Um processo simples, sem compromisso, para perceber o que faz sentido para a vossa equipa.',
+        steps: [
+          { title: 'Pedido de proposta', text: 'Diga-nos a dimensão da equipa e o que procura.' },
+          { title: 'Proposta à medida', text: 'Enviamos uma proposta clara, com formatos e condições.' },
+          { title: 'Arranque', text: 'Agendamos os workshops ou ativamos o protocolo e as bolsas.' },
+        ],
+      },
+      confidentiality: {
+        title: 'Confidencialidade e rigor',
+        text: 'O reporte à empresa é sempre agregado: o conteúdo das sessões fica entre o profissional e o colaborador. Cumprimos as regras de proteção de dados e não prometemos resposta de urgência nem formação certificada sem a estrutura adequada.',
+      },
+      form: {
+        eyebrow: 'Pedido de proposta',
+        title: 'Falemos sobre a vossa equipa',
+        text: 'Deixe os seus dados e o que procura. Respondemos com uma proposta adaptada à vossa organização.',
+        labels: {
+          name: 'Nome',
+          company: 'Empresa',
+          email: 'Email profissional',
+          size: 'Nº de colaboradores (opcional)',
+          message: 'O que procura',
+        },
+        submit: 'Pedir proposta',
+        privacy: 'Ao enviar, autoriza o contacto da Nest Minds para responder ao seu pedido.',
+        pending: 'Formulário em configuração. Enquanto o envio não está ativo, contacte-nos pelos canais habituais do site.',
+      },
     },
     resources: {
       eyebrow: 'Recursos',
@@ -216,6 +296,69 @@ export const site: Record<Locale, LocaleContent> = {
       ],
       cta: 'Request a proposal',
     },
+    companies: {
+      meta: {
+        title: 'Workplace mental health in Lisbon & online | Nest Minds',
+        description:
+          'Mental wellbeing for teams: employee protocols, workshops, session packs and tailored programmes. Delivered in English, Portuguese and Spanish. Request a proposal.',
+      },
+      hero: {
+        eyebrow: 'For companies',
+        h1: 'Looking after people is looking after the business.',
+        sub: 'Mental wellbeing for teams, leaders and organisations — in Lisbon and online, with care delivered in English, Portuguese and Spanish.',
+        cta: 'Request a proposal',
+        back: '← Back to Nest Minds',
+      },
+      offers: {
+        eyebrow: 'What we offer',
+        title: 'Four ways to start',
+        intro: 'Start simple with a no-cost protocol, and grow into training and ongoing care as it makes sense.',
+        items: [
+          { icon: 'care', title: 'Employee protocol', text: 'Preferential consultation terms for employees and their families, at no joining cost to the company.' },
+          { icon: 'talk', title: 'Workshops & training', text: 'Practical sessions on stress, burnout, communication, emotional intelligence and parenting — online or in person.' },
+          { icon: 'heart', title: 'Session packs', text: 'The company funds a set of sessions for employees, with simple booking and full clinical confidentiality.' },
+          { icon: 'academy', title: 'Tailored programmes', text: 'Ongoing support and interventions designed around each organisation’s goals.' },
+        ],
+      },
+      why: {
+        eyebrow: 'Why Nest Minds',
+        title: 'What sets us apart',
+        items: [
+          { icon: 'globe', title: 'Multilingual care', text: 'International teams supported in English, Portuguese and Spanish.' },
+          { icon: 'brain', title: 'Parenting & neurodevelopment', text: 'Specialist expertise that goes beyond the generic corporate catalogue.' },
+          { icon: 'adult', title: 'A verified clinical team', text: 'Psychologists with real training and specialisation, not an anonymous pool.' },
+        ],
+      },
+      how: {
+        eyebrow: 'How we work',
+        title: 'From conversation to proposal',
+        intro: 'A simple, no-commitment process to find what fits your team.',
+        steps: [
+          { title: 'Request a proposal', text: 'Tell us your team size and what you are looking for.' },
+          { title: 'Tailored proposal', text: 'We send a clear proposal with formats and terms.' },
+          { title: 'Kick-off', text: 'We schedule the workshops or activate the protocol and packs.' },
+        ],
+      },
+      confidentiality: {
+        title: 'Confidentiality & rigour',
+        text: 'Reporting to the company is always aggregated: what happens in sessions stays between the professional and the employee. We follow data-protection rules and never promise emergency response or certified training without the right structure in place.',
+      },
+      form: {
+        eyebrow: 'Request a proposal',
+        title: 'Let’s talk about your team',
+        text: 'Leave your details and what you are looking for. We will reply with a proposal tailored to your organisation.',
+        labels: {
+          name: 'Name',
+          company: 'Company',
+          email: 'Work email',
+          size: 'Number of employees (optional)',
+          message: 'What you are looking for',
+        },
+        submit: 'Request a proposal',
+        privacy: 'By submitting, you allow Nest Minds to contact you about your request.',
+        pending: 'Form being configured. While submission is not yet live, please reach us through the site’s usual channels.',
+      },
+    },
     resources: {
       eyebrow: 'Resources',
       title: 'Articles written by professionals',
@@ -322,6 +465,69 @@ export const site: Record<Locale, LocaleContent> = {
         { icon: 'care', title: 'Corporate Care', text: 'Un acuerdo trimestral o anual adaptado a la organización.' },
       ],
       cta: 'Solicitar propuesta',
+    },
+    companies: {
+      meta: {
+        title: 'Psicología para empresas en Lisboa y online | Nest Minds',
+        description:
+          'Bienestar psicológico para equipos: protocolos para empleados, talleres, bonos de sesiones y programas a medida. En español, inglés y portugués. Solicita una propuesta.',
+      },
+      hero: {
+        eyebrow: 'Empresas y organizaciones',
+        h1: 'Cuidar de las personas también es cuidar de la empresa.',
+        sub: 'Bienestar psicológico para equipos, liderazgo y organizaciones — en Lisboa y online, con atención en español, inglés y portugués.',
+        cta: 'Solicitar propuesta',
+        back: '← Volver a Nest Minds',
+      },
+      offers: {
+        eyebrow: 'Qué ofrecemos',
+        title: 'Cuatro maneras de empezar',
+        intro: 'Puedes empezar de forma sencilla, con un protocolo sin coste, y crecer hacia formación y acompañamiento continuo.',
+        items: [
+          { icon: 'care', title: 'Protocolo de empresa', text: 'Condiciones preferentes de consulta para empleados y familias, sin coste de adhesión para la empresa.' },
+          { icon: 'talk', title: 'Talleres y formación', text: 'Sesiones prácticas sobre estrés, burnout, comunicación, inteligencia emocional y parentalidad — online o presenciales.' },
+          { icon: 'heart', title: 'Bonos de sesiones', text: 'La empresa ofrece un conjunto de sesiones a los empleados, con reserva sencilla y confidencialidad clínica.' },
+          { icon: 'academy', title: 'Programas a medida', text: 'Acompañamiento continuo e intervenciones diseñadas para los objetivos de cada organización.' },
+        ],
+      },
+      why: {
+        eyebrow: 'Por qué Nest Minds',
+        title: 'Lo que nos distingue',
+        items: [
+          { icon: 'globe', title: 'Atención multilingüe', text: 'Equipos internacionales atendidos en español, inglés y portugués.' },
+          { icon: 'brain', title: 'Parentalidad y neurodesarrollo', text: 'Una especialización que va más allá del catálogo corporativo genérico.' },
+          { icon: 'adult', title: 'Un equipo clínico verificado', text: 'Psicólogos con formación y especialización reales, no una bolsa anónima.' },
+        ],
+      },
+      how: {
+        eyebrow: 'Cómo avanzamos',
+        title: 'De la conversación a la propuesta',
+        intro: 'Un proceso sencillo y sin compromiso para encontrar lo que encaja con tu equipo.',
+        steps: [
+          { title: 'Solicitar propuesta', text: 'Cuéntanos el tamaño del equipo y qué buscáis.' },
+          { title: 'Propuesta a medida', text: 'Enviamos una propuesta clara, con formatos y condiciones.' },
+          { title: 'Puesta en marcha', text: 'Agendamos los talleres o activamos el protocolo y los bonos.' },
+        ],
+      },
+      confidentiality: {
+        title: 'Confidencialidad y rigor',
+        text: 'El informe a la empresa es siempre agregado: lo que ocurre en las sesiones queda entre el profesional y la persona. Cumplimos las normas de protección de datos y no prometemos respuesta de urgencia ni formación certificada sin la estructura adecuada.',
+      },
+      form: {
+        eyebrow: 'Solicitud de propuesta',
+        title: 'Hablemos de tu equipo',
+        text: 'Déjanos tus datos y lo que buscáis. Te responderemos con una propuesta adaptada a tu organización.',
+        labels: {
+          name: 'Nombre',
+          company: 'Empresa',
+          email: 'Email profesional',
+          size: 'Nº de empleados (opcional)',
+          message: 'Qué buscáis',
+        },
+        submit: 'Solicitar propuesta',
+        privacy: 'Al enviar, autorizas a Nest Minds a contactarte para responder a tu solicitud.',
+        pending: 'Formulario en configuración. Mientras el envío no está activo, contáctanos por los canales habituales del sitio.',
+      },
     },
     resources: {
       eyebrow: 'Recursos',

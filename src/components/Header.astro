@@ -1,10 +1,13 @@
 ---
 import { type Locale, site, locales, localeLabel } from '../content/site';
-interface Props { lang: Locale }
-const { lang } = Astro.props;
+interface Props { lang: Locale; altLocales?: Partial<Record<Locale, string>> }
+const { lang, altLocales } = Astro.props;
 const c = site[lang];
 const path = Astro.url.pathname;
 const swap = (to: Locale) => path.replace(/^\/(pt|en|es)(\/|$)/, `/${to}$2`);
+// Em páginas com slugs diferentes por idioma (ex. /pt/empresas vs /en/companies),
+// a página passa um mapa explícito; caso contrário mantém-se o swap do prefixo.
+const hrefFor = (to: Locale) => altLocales?.[to] ?? swap(to);
 ---
 <header class="site-header">
   <nav class="nav" aria-label="Nest Minds">
@@ -18,7 +21,7 @@ const swap = (to: Locale) => path.replace(/^\/(pt|en|es)(\/|$)/, `/${to}$2`);
       </ul>
       <div class="lang-switch" aria-label="Idioma / Language / Idioma">
         {locales.map((l) => (
-          <a href={swap(l)} aria-current={l === lang ? 'true' : 'false'} lang={l}>{localeLabel[l]}</a>
+          <a href={hrefFor(l)} aria-current={l === lang ? 'true' : 'false'} lang={l}>{localeLabel[l]}</a>
         ))}
       </div>
       <button class="nav-toggle" aria-expanded="false" aria-controls="navlinks" aria-label="Menu">

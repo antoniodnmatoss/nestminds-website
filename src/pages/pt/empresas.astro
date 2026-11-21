@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import CompaniesLanding from '../../components/CompaniesLanding.astro';
+import { site } from '../../content/site';
+const lang = 'pt' as const;
+const m = site[lang].companies.meta;
+const altLocales = { pt: '/pt/empresas', en: '/en/companies', es: '/es/empresas' };
+---
+<Base lang={lang} title={m.title} description={m.description} altLocales={altLocales}>
+  <CompaniesLanding lang={lang} />
+</Base>

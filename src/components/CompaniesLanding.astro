@@ -1,0 +1,135 @@
+---
+// Landing page B2B dedicada (uma por idioma). Página de campanha focada:
+// promessa → oferta → prova → confidencialidade → pedido de proposta.
+// Reaproveita o design system; não cria linguagem visual nova.
+import { type Locale, site } from '../content/site';
+import { settings } from '../data/settings';
+import Icon from './Icon.astro';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const c = site[lang].companies;
+const key = settings.web3formsKey;
+const origin = `companies-${lang}`;
+const subject = `[Empresas ${lang.toUpperCase()}] ${c.form.title}`;
+---
+<section class="page-head">
+  <div class="container">
+    <span class="eyebrow">{c.hero.eyebrow}</span>
+    <h1>{c.hero.h1}</h1>
+    <p class="lead">{c.hero.sub}</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a class="btn btn-primary" href="#proposta">{c.hero.cta}</a>
+    </div>
+    <p style="margin-top:22px;margin-bottom:0;"><a href={`/${lang}/`}>{c.hero.back}</a></p>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{c.offers.eyebrow}</span>
+      <h2>{c.offers.title}</h2>
+      <p>{c.offers.intro}</p>
+    </div>
+    <div class="grid grid-4">
+      {c.offers.items.map((it) => (
+        <article class="card">
+          <div class="card-icon"><Icon name={it.icon} /></div>
+          <h3>{it.title}</h3>
+          <p>{it.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- PORQUÊ -->
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{c.why.eyebrow}</span>
+      <h2>{c.why.title}</h2>
+    </div>
+    <div class="grid grid-3">
+      {c.why.items.map((it) => (
+        <article class="card">
+          <div class="card-icon"><Icon name={it.icon} /></div>
+          <h3>{it.title}</h3>
+          <p>{it.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- COMO AVANÇAMOS -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{c.how.eyebrow}</span>
+      <h2>{c.how.title}</h2>
+      <p>{c.how.intro}</p>
+    </div>
+    <div class="steps three">
+      {c.how.steps.map((s, i) => (
+        <div class="step">
+          <span class="step-num">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
+    </div>
+    <p class="notice text-center" style="margin:32px auto 0;max-width:720px;">{c.confidentiality.text}</p>
+  </div>
+</section>
+
+<!-- PEDIDO DE PROPOSTA -->
+<section id="proposta" class="section-alt">
+  <div class="container" style="max-width:740px;">
+    <div class="section-head">
+      <span class="eyebrow">{c.form.eyebrow}</span>
+      <h2>{c.form.title}</h2>
+      <p>{c.form.text}</p>
+    </div>
+    <form class="form-grid two-col" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value={key ?? ''} />
+      <input type="hidden" name="subject" value={subject} />
+      <input type="hidden" name="origin" value={origin} />
+      <input type="checkbox" name="botcheck" class="visually-hidden" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+      <div class="field">
+        <label for="f-name">{c.form.labels.name}</label>
+        <input id="f-name" name="name" type="text" required autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="f-company">{c.form.labels.company}</label>
+        <input id="f-company" name="company" type="text" required autocomplete="organization" />
+      </div>
+      <div class="field">
+        <label for="f-email">{c.form.labels.email}</label>
+        <input id="f-email" name="email" type="email" required autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="f-size">{c.form.labels.size}</label>
+        <input id="f-size" name="employees" type="text" inputmode="numeric" />
+      </div>
+      <div class="field field-full">
+        <label for="f-msg">{c.form.labels.message}</label>
+        <textarea id="f-msg" name="message" required></textarea>
+      </div>
+
+      <div class="field-full">
+        <button class="btn btn-primary" type="submit" disabled={!key} aria-disabled={!key}>{c.form.submit}</button>
+        {!key && <p class="notice" style="margin-top:14px;">{c.form.pending}</p>}
+        <p class="form-note">{c.form.privacy}</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 720px) {
+    .steps.three { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
