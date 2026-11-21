@@ -12,7 +12,7 @@ const key = settings.web3formsKey;
 const origin = `companies-${lang}`;
 const subject = `[Empresas ${lang.toUpperCase()}] ${c.form.title}`;
 ---
-<section class="page-head">
+<section class="page-head co-hero">
   <div class="container">
     <span class="eyebrow">{c.hero.eyebrow}</span>
     <h1>{c.hero.h1}</h1>
@@ -20,7 +20,10 @@ const subject = `[Empresas ${lang.toUpperCase()}] ${c.form.title}`;
     <div class="hero-actions" style="justify-content:center;">
       <a class="btn btn-primary" href="#proposta">{c.hero.cta}</a>
     </div>
-    <p style="margin-top:22px;margin-bottom:0;"><a href={`/${lang}/`}>{c.hero.back}</a></p>
+    <ul class="co-points">
+      {c.hero.points.map((p) => <li>{p}</li>)}
+    </ul>
+    <p class="co-back"><a href={`/${lang}/`}>{c.hero.back}</a></p>
   </div>
 </section>
 
@@ -84,6 +87,17 @@ const subject = `[Empresas ${lang.toUpperCase()}] ${c.form.title}`;
   </div>
 </section>
 
+<!-- FAIXA CTA -->
+<section class="section-sage">
+  <div class="container cta-banner">
+    <h2>{c.band.title}</h2>
+    <p>{c.band.text}</p>
+    <div class="cta-actions">
+      <a class="btn btn-on-sage" href="#proposta">{c.band.cta}</a>
+    </div>
+  </div>
+</section>
+
 <!-- PEDIDO DE PROPOSTA -->
 <section id="proposta" class="section-alt">
   <div class="container" style="max-width:740px;">
@@ -132,4 +146,18 @@ const subject = `[Empresas ${lang.toUpperCase()}] ${c.form.title}`;
   @media (min-width: 720px) {
     .steps.three { grid-template-columns: repeat(3, 1fr); }
   }
+  .co-points {
+    list-style: none; padding: 0; margin: 26px auto 0; max-width: 780px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px;
+  }
+  .co-points li {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 0.92rem; font-weight: 500; color: var(--color-charcoal);
+  }
+  .co-points li::before {
+    content: ''; width: 9px; height: 9px; flex: none; border-radius: 50%;
+    background: var(--color-terracotta);
+  }
+  .co-back { margin: 24px 0 0; }
+  .co-back a { font-size: 0.9rem; }
 </style>
