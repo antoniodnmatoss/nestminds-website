@@ -145,6 +145,13 @@ const bookHref = settings.email !== settings.email.toUpperCase() ? `mailto:${set
     <span class="eyebrow" style="color:rgba(255,255,255,0.85);">{c.contact.eyebrow}</span>
     <h2>{c.contact.title}</h2>
     <p>{c.contact.text}</p>
+    {settings.address.line !== 'TODO_VERIFY' && (
+      <p style="color:#fff;font-weight:500;margin:0 auto 6px;">
+        {lang === 'en' ? 'In person' : 'Presencial'}: {settings.address.line}, {settings.address.area}, {settings.address.city}
+        {' · '}
+        <a href={settings.address.mapsUrl} target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">Google Maps ↗</a>
+      </p>
+    )}
     <div class="cta-actions">
       <a class="btn btn-on-sage" href={bookHref}>{c.contact.cta}</a>
     </div>

@@ -12,14 +12,16 @@ export const settings = {
   siteUrl: 'https://nestminds-website.vercel.app', // → https://nestminds.pt quando ativar
 
   // --- Contactos (POR CONFIRMAR antes de publicar) ---
-  email: TODO,          // ex. geral@nestminds.pt
-  phone: TODO,
+  email: TODO,          // alias geral@nestminds.pt ainda por gerar
+  phone: TODO,          // não assumir o nº do nestspaces sem confirmação
   whatsapp: TODO,
   address: {
-    line: TODO,         // morada final no Lumiar, Lisboa
-    city: 'Lisboa',
+    // Confirmado pelo utilizador: mesma morada do nestspaces.
+    line: 'Praça Rainha Dona Filipa 3',
     area: 'Lumiar',
-    mapsUrl: TODO,
+    city: 'Lisboa',
+    note: 'junto ao metro',
+    mapsUrl: 'https://maps.google.com/maps?q=Pra%C3%A7a+Rainha+Dona+Filipa+3,+Lumiar,+Lisboa',
   },
   hours: TODO,
 
@@ -31,6 +33,10 @@ export const settings = {
   // --- Dados legais (POR CONFIRMAR) ---
   nipc: TODO,
   ersNumber: TODO,
+
+  // Pré-lançamento: noindex global até revisão clínica + domínio nestminds.pt.
+  // Pôr a false no lançamento real para permitir indexação.
+  preLaunchNoindex: true,
 
   // --- Feature flags: só ligar quando houver conteúdo/validação real ---
   flags: {
