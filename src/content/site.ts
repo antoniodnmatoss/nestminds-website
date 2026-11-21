@@ -60,8 +60,8 @@ export const site: Record<Locale, LocaleContent> = {
       { label: 'Início', href: '/pt/' },
       { label: 'Psicologia Clínica', href: '/pt/#servicos' },
       { label: 'Neurodesenvolvimento', href: '/pt/#neuro' },
-      { label: 'Empresas', href: '/pt/#empresas' },
       { label: 'Equipa', href: '/pt/#equipa' },
+      { label: 'Empresas', href: '/pt/empresas' },
       { label: 'Contactos', href: '/pt/#contacto' },
     ],
     cta: { book: 'Marcar consulta', team: 'Conhecer a equipa', proposal: 'Pedir proposta' },
@@ -208,7 +208,7 @@ export const site: Record<Locale, LocaleContent> = {
       linksA: [
         { label: 'Psicologia Clínica', href: '/pt/#servicos' },
         { label: 'Neurodesenvolvimento', href: '/pt/#neuro' },
-        { label: 'Empresas', href: '/pt/#empresas' },
+        { label: 'Empresas', href: '/pt/empresas' },
       ],
       linksB: [
         { label: 'Equipa', href: '/pt/#equipa' },
@@ -228,10 +228,10 @@ export const site: Record<Locale, LocaleContent> = {
     nav: [
       { label: 'Home', href: '/en/' },
       { label: 'Therapy in English', href: '/en/#servicos' },
-      { label: 'Online Therapy', href: '/en/#modalities' },
       { label: 'Autism & ADHD', href: '/en/#neuro' },
-      { label: 'For Companies', href: '/en/#empresas' },
+      { label: 'Online Therapy', href: '/en/#modalities' },
       { label: 'Our Team', href: '/en/#equipa' },
+      { label: 'For Companies', href: '/en/companies' },
       { label: 'Contact', href: '/en/#contacto' },
     ],
     cta: { book: 'Find a psychologist', team: 'Meet the team', proposal: 'Request a proposal' },
@@ -378,7 +378,7 @@ export const site: Record<Locale, LocaleContent> = {
       linksA: [
         { label: 'Therapy in English', href: '/en/#servicos' },
         { label: 'Autism & ADHD', href: '/en/#neuro' },
-        { label: 'For Companies', href: '/en/#empresas' },
+        { label: 'For Companies', href: '/en/companies' },
       ],
       linksB: [
         { label: 'Our Team', href: '/en/#equipa' },
@@ -398,10 +398,10 @@ export const site: Record<Locale, LocaleContent> = {
     nav: [
       { label: 'Inicio', href: '/es/' },
       { label: 'Psicología en Español', href: '/es/#servicos' },
-      { label: 'Terapia Online', href: '/es/#modalities' },
       { label: 'Autismo y TDAH', href: '/es/#neuro' },
-      { label: 'Empresas', href: '/es/#empresas' },
+      { label: 'Terapia Online', href: '/es/#modalities' },
       { label: 'Equipo', href: '/es/#equipa' },
+      { label: 'Empresas', href: '/es/empresas' },
       { label: 'Contacto', href: '/es/#contacto' },
     ],
     cta: { book: 'Encontrar psicólogo', team: 'Conocer al equipo', proposal: 'Solicitar propuesta' },
@@ -548,7 +548,7 @@ export const site: Record<Locale, LocaleContent> = {
       linksA: [
         { label: 'Psicología en Español', href: '/es/#servicos' },
         { label: 'Autismo y TDAH', href: '/es/#neuro' },
-        { label: 'Empresas', href: '/es/#empresas' },
+        { label: 'Empresas', href: '/es/empresas' },
       ],
       linksB: [
         { label: 'Equipo', href: '/es/#equipa' },
