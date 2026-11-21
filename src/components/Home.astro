@@ -1,0 +1,153 @@
+---
+import { type Locale, site } from '../content/site';
+import { settings } from '../data/settings';
+import Icon from './Icon.astro';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const c = site[lang];
+const bookHref = settings.email !== settings.email.toUpperCase() ? `mailto:${settings.email}` : `/${lang}/#contacto`;
+---
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">{c.hero.eyebrow}</span>
+      <h1>{c.hero.h1}</h1>
+      <p>{c.hero.sub}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href={`/${lang}/#contacto`}>{c.cta.book}</a>
+        <a class="btn btn-secondary" href={`/${lang}/#equipa`}>{c.cta.team}</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <Icon name="heart" />
+      <span class="placeholder-note">{c.hero.visualNote}</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{c.services.eyebrow}</span>
+      <h2>{c.services.title}</h2>
+      <p>{c.services.intro}</p>
+    </div>
+    <div class="grid grid-3">
+      {c.services.items.map((it) => (
+        <article class="card">
+          <div class="card-icon"><Icon name={it.icon} /></div>
+          <h3>{it.title}</h3>
+          <p>{it.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- NEURODESENVOLVIMENTO -->
+<section id="neuro" class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{c.neuro.eyebrow}</span>
+      <h2>{c.neuro.title}</h2>
+      <p>{c.neuro.intro}</p>
+    </div>
+    <div class="grid grid-2">
+      {c.neuro.items.map((it) => (
+        <article class="card">
+          <div class="card-icon"><Icon name={it.icon} /></div>
+          <h3>{it.title}</h3>
+          <p>{it.text}</p>
+        </article>
+      ))}
+    </div>
+    <p class="notice text-center" style="margin:28px auto 0;max-width:720px;">{c.neuro.note}</p>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{c.how.eyebrow}</span>
+      <h2>{c.how.title}</h2>
+      <p>{c.how.intro}</p>
+    </div>
+    <div class="steps">
+      {c.how.steps.map((s, i) => (
+        <div class="step">
+          <span class="step-num">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- MODALIDADES -->
+<section id="modalities" class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{c.modalities.eyebrow}</span>
+      <h2>{c.modalities.title}</h2>
+    </div>
+    <div class="feature-list two">
+      {c.modalities.items.map((it) => (
+        <div class="feature">
+          <div class="card-icon"><Icon name={it.icon} /></div>
+          <div><h3>{it.title}</h3><p>{it.text}</p></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPA -->
+<section id="equipa">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{c.team.eyebrow}</span>
+      <h2>{c.team.title}</h2>
+      <p>{c.team.text}</p>
+    </div>
+  </div>
+</section>
+
+<!-- EMPRESAS -->
+<section id="empresas" class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{c.corporate.eyebrow}</span>
+      <h2>{c.corporate.title}</h2>
+      <p>{c.corporate.text}</p>
+    </div>
+    <div class="grid grid-3">
+      {c.corporate.items.map((it) => (
+        <article class="card">
+          <div class="card-icon"><Icon name={it.icon} /></div>
+          <h3>{it.title}</h3>
+          <p>{it.text}</p>
+        </article>
+      ))}
+    </div>
+    <div class="text-center" style="margin-top:32px;">
+      <a class="btn btn-secondary" href={`/${lang}/#contacto`}>{c.corporate.cta}</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO / CTA FINAL -->
+<section id="contacto" class="section-sage">
+  <div class="container cta-banner">
+    <span class="eyebrow" style="color:rgba(255,255,255,0.85);">{c.contact.eyebrow}</span>
+    <h2>{c.contact.title}</h2>
+    <p>{c.contact.text}</p>
+    <div class="cta-actions">
+      <a class="btn btn-on-sage" href={bookHref}>{c.contact.cta}</a>
+    </div>
+    <p style="color:rgba(255,255,255,0.72);font-size:0.82rem;max-width:54ch;margin:24px auto 0;">{c.contact.emergency}</p>
+  </div>
+</section>

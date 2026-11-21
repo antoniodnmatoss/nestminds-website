@@ -1,0 +1,30 @@
+---
+import { locales, htmlLang, type Locale } from '../content/site';
+interface Props { lang: Locale; title: string; description: string }
+const { lang, title, description } = Astro.props;
+
+const path = Astro.url.pathname;
+// Troca o prefixo de idioma para gerar as páginas equivalentes (hreflang).
+const swap = (to: Locale) => path.replace(/^\/(pt|en|es)(\/|$)/, `/${to}$2`);
+const canonical = new URL(path, Astro.site);
+const ogImage = new URL('/nest-icon.png', Astro.site);
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical.href} />
+{locales.map((l) => (
+  <link rel="alternate" hreflang={htmlLang[l]} href={new URL(swap(l), Astro.site).href} />
+))}
+<link rel="alternate" hreflang="x-default" href={new URL(swap('pt'), Astro.site).href} />
+<link rel="icon" type="image/png" href="/nest-icon.png" />
+<link rel="preload" href="/fonts/fraunces-variable.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical.href} />
+<meta property="og:image" content={ogImage.href} />
+<meta name="twitter:card" content="summary" />
+<meta name="generator" content={Astro.generator} />

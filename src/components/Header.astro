@@ -1,0 +1,37 @@
+---
+import { type Locale, site, locales, localeLabel } from '../content/site';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const c = site[lang];
+const path = Astro.url.pathname;
+const swap = (to: Locale) => path.replace(/^\/(pt|en|es)(\/|$)/, `/${to}$2`);
+---
+<header class="site-header">
+  <nav class="nav" aria-label="Nest Minds">
+    <a class="nav-logo" href={`/${lang}/`}>
+      <img src="/nest-icon.png" alt="Nest Minds" width="40" height="40" />
+      <span class="wordmark"><span class="wm-nest">Nest</span><span class="wm-minds">Minds</span></span>
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links" id="navlinks">
+        {c.nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+      <div class="lang-switch" aria-label="Idioma / Language / Idioma">
+        {locales.map((l) => (
+          <a href={swap(l)} aria-current={l === lang ? 'true' : 'false'} lang={l}>{localeLabel[l]}</a>
+        ))}
+      </div>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="navlinks" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.getElementById('navlinks');
+  toggle?.addEventListener('click', () => {
+    const open = links?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>
